@@ -18,13 +18,14 @@ import CreatePost from "./pages/user/CreatePost";
 import userFeedLoader from "./loaders/combined/userFeedLoader";
 import ConfirmationDialog from "./components/ConfirmationDialog";
 import ProfilePage from "./pages/user/ProfilePage";
+import Loader from "./components/Loader";
 
 const routes = [
   {
     path: "/",
     element: <LayoutWrapper />,
     loader: authLoader,
-    hydrateFallbackElement: <p>Loading...</p>,
+    hydrateFallbackElement: <Loader />,
     children: [
       {
         index: true,
@@ -44,7 +45,7 @@ const routes = [
     path: "/dashboard",
     element: <DashboardWrapper />,
     loader: authLoader,
-    hydrateFallbackElement: <p>Loading...</p>,
+    hydrateFallbackElement: <Loader />,
     children: [
       {
         index: true,
@@ -53,12 +54,12 @@ const routes = [
       {
         path: "logout",
         element: <Logout />,
-        hydrateFallbackElement: <p>Please wait...</p>
+        hydrateFallbackElement: <Loader />
       },
       {
         path: "feed",
         element: <UserFeed />,
-        hydrateFallbackElement: <p>Loading Feed...</p>,
+        hydrateFallbackElement: <Loader />,
         loader: userFeedLoader
       },
       {
@@ -69,7 +70,7 @@ const routes = [
         path: "profile",
         element: <ProfilePage />,
         loader: authLoader,
-        hydrateFallbackElement: <p>Loading profile...</p>
+        hydrateFallbackElement: <Loader />
       }
     ]
   },
@@ -77,7 +78,7 @@ const routes = [
     path: "/admin/dashboard",
     element: <AdminWrapper />,
     loader: authLoader,
-    hydrateFallbackElement: <p>Loading admin...</p>,
+    hydrateFallbackElement: <Loader />,
     children: [
       {
         path: "",
@@ -86,13 +87,13 @@ const routes = [
       {
         path: "logout",
         element: <Logout />,
-        hydrateFallbackElement: <p>Please wait...</p>
+        hydrateFallbackElement: <Loader />
       },
       {
         path: "profile",
         element: <ProfilePage />,
         loader: authLoader,
-        hydrateFallbackElement: <p>Loading profile...</p>
+        hydrateFallbackElement: <Loader />
       }
     ]
   }

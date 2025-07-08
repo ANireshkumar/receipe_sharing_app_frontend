@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const baseURL = 'https://receipe-sharing-app-backend.onrender.com/api/v1';
-
+// const baseURL = 'http://localhost:3001/api/v1';
 const instance = axios.create({
     baseURL,
     timeout: 3000,

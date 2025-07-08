@@ -2,7 +2,12 @@ import instance from "./instance";
 
 const postServices = {
     createPost: async (post) => {
-        return await instance.post("/posts", post);
+        return await instance.post("/posts", post, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            withCredentials: true
+        });
     },
     fetchPosts: async () => {
         return await instance.get("/posts");
