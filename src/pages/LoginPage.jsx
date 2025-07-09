@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import { selectEmail, selectPassword, setEmail, setPassword } from "../redux/features/auth/loginSlice";
+import { selectEmail, selectPassword, setAuth, setEmail, setPassword } from "../redux/features/auth/loginSlice";
 import authServices from "../services/authServices";
 import { toast } from "react-toastify";
 
@@ -19,6 +19,7 @@ const LoginPage = () => {
             .then((response) => {
                 toast.success(response.data.message);
                 localStorage.setItem('token', response.data.token);
+                dispatch(setAuth(true));
 
                 // clear the form
                 dispatch(setEmail(''));
