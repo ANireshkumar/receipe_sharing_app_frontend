@@ -18,6 +18,7 @@ const LoginPage = () => {
         authServices.login({ email, password })
             .then((response) => {
                 toast.success(response.data.message);
+                localStorage.setItem('token', response.data.token);
 
                 // clear the form
                 dispatch(setEmail(''));
