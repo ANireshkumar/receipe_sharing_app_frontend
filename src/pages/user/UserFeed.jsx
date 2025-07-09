@@ -58,7 +58,7 @@ const UserFeed = () => {
                             <h2 className="text-xl font-bold">{post.title}</h2>
                             <p className="text-gray-600">{post.content}</p>
                             {post.image && (
-                                <img src={`http://localhost:3001${post.image}`} alt={post.title} className="mt-4 w-full h-auto rounded-lg" />
+                                <img src={`https://receipe-sharing-app-backend.onrender.com${post.image}`} alt={post.title} className="mt-4 w-full h-auto rounded-lg" />
                             )}
                             <div className="flex justify-between mt-4">
                                 <p className="text-gray-500">posted by: {post.author.name}</p>
