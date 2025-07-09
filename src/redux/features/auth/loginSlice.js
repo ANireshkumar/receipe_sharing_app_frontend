@@ -4,8 +4,7 @@ export const loginSlice = createSlice({
     name: "login",
     initialState: {
         email: "",
-        password: "",
-        isAuthenticated: false
+        password: ""
     },
     reducers: {
         setEmail: (state, action) => {
@@ -13,17 +12,13 @@ export const loginSlice = createSlice({
         },
         setPassword: (state, action) => {
             state.password = action.payload;
-        },
-        setAuth: (state, action) => {
-            state.isAuthenticated = action.payload;
         }
     }
 });
 
-export const { setEmail, setPassword, setAuth } = loginSlice.actions;
+export const { setEmail, setPassword } = loginSlice.actions;
 
 export const selectEmail = state => state.login.email;
 export const selectPassword = state => state.login.password;
-export const selectAuth = state => state.login.isAuthenticated;
 
 export default loginSlice.reducer;
