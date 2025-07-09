@@ -33,7 +33,7 @@ const CreatePost = () => {
                 setImagePreview(null);
 
                 setTimeout(() => {
-                    navigate("/dashboard/feed");
+                    window.location.href = "/dashboard/feed";
                 }, 500);
             })
             .catch((error) => {
