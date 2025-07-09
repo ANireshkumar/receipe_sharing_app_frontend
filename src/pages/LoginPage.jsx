@@ -26,7 +26,7 @@ const LoginPage = () => {
 
                 // navigate the user to the dashboard page
                 setTimeout(() => {
-                    window.location.href = '/dashboard';
+                    navigate('/dashboard');
                 }, 500);
             })
             .catch((error) => {
