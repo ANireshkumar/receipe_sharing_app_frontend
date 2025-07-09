@@ -1,3 +1,4 @@
+import { redirect } from "react-router-dom";
 import authServices from "../../services/authServices";
 
 const authLoader = async () => {
@@ -5,7 +6,7 @@ const authLoader = async () => {
         const response = await authServices.me();
         return response.data;
     } catch (error) {
-        return null;
+        return redirect('/login');
     }
 }
 
