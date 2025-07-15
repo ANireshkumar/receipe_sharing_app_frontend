@@ -19,6 +19,9 @@ import userFeedLoader from "./loaders/combined/userFeedLoader";
 import ConfirmationDialog from "./components/ConfirmationDialog";
 import ProfilePage from "./pages/user/ProfilePage";
 import Loader from "./components/Loader";
+import EditPost from "./pages/user/EditPost";
+import { postLoader } from "./loaders/unit/postLoader";
+import RecipePage from "./pages/RecipePage";
 
 const routes = [
   {
@@ -36,6 +39,10 @@ const routes = [
       {
         path: "/login",
         element: <LoginPage />
+      },
+      {
+        path: "/recipe/:recipeId",
+        element: <RecipePage />
       }
     ]
   },
@@ -63,6 +70,12 @@ const routes = [
       {
         path: "create-post",
         element: <CreatePost />
+      },
+      {
+        path: "edit-post/:postId",
+        element: <EditPost />,
+        loader: postLoader,
+        hydrateFallbackElement: <Loader />
       },
       {
         path: "profile",

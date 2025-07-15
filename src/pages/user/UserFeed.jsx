@@ -40,6 +40,10 @@ const UserFeed = () => {
             });
     }
 
+    const handleEdit = (index) => {
+        navigate(`/dashboard/edit-post/${posts[index]._id}`);
+    }
+
     const handleDelete = (index) => {
         dispatch(openDialog({
             message: "Are you sure you want to delete this post?",
@@ -58,7 +62,7 @@ const UserFeed = () => {
                             <h2 className="text-xl font-bold">{post.title}</h2>
                             <p className="text-gray-600">{post.content}</p>
                             {post.image && (
-                                <img src={`https://receipe-sharing-app-backend.onrender.com${post.image}`} alt={post.title} className="mt-4 w-full h-auto rounded-lg" />
+                                <img src={`http://localhost:3001${post.image}`} alt={post.title} className="mt-4 w-full h-auto rounded-lg" />
                             )}
                             <div className="flex justify-between mt-4">
                                 <p className="text-gray-500">posted by: {post.author.name}</p>
@@ -76,10 +80,16 @@ const UserFeed = () => {
                                 </div>
 
                                 <div className="flex justify-end">
-                                    <span className="text-blue-600 cursor-pointer hover:underline">Edit</span>
-                                    <span className="text-red-600 cursor-pointer hover:underline ml-4"
-                                        onClick={() => handleDelete(index)}
-                                    >Delete</span>
+                                    {user.user._id === post.author._id && (
+                                        <>
+                                            <span className="text-blue-600 cursor-pointer hover:underline"
+                                                onClick={() => handleEdit(index)}
+                                            >Edit</span>
+                                            <span className="text-red-600 cursor-pointer hover:underline ml-4"
+                                                onClick={() => handleDelete(index)}
+                                            >Delete</span>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>

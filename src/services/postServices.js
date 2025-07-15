@@ -3,6 +3,9 @@ import instance from "./instance";
 const postServices = {
     createPost: async (post) => {
         return await instance.post("/posts", post, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
             withCredentials: true
         });
     },
@@ -13,7 +16,11 @@ const postServices = {
         return await instance.get(`/posts/${postId}`);
     },
     updatePost: async (postId, post) => {
-        return await instance.put(`/posts/${postId}`, post);
+        return await instance.put(`/posts/${postId}`, post, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
     },
     deletePost: async (postId) => {
         return await instance.delete(`/posts/${postId}`);
