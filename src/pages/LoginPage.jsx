@@ -16,6 +16,7 @@ const LoginPage = () => {
         e.preventDefault();
         try {
             const response = await authServices.login({ email, password });
+            localStorage.setItem("token", response.data.token);
             toast.success(response.data.message);
             setTimeout(() => {
                 navigate("/dashboard");
