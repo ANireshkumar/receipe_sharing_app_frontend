@@ -12,26 +12,18 @@ const LoginPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-
-        authServices.login({ email, password })
-            .then((response) => {
-                toast.success(response.data.message);
-                localStorage.setItem('token', response.data.token);
-
-                // clear the form
-                dispatch(setEmail(''));
-                dispatch(setPassword(''));
-
-                // navigate the user to the dashboard page
-                setTimeout(() => {
-                    navigate('/dashboard');
-                }, 500);
-            })
-            .catch((error) => {
-                toast.error(error.response.data.message);
-            });
+        try {
+            const response = await authServices.login({ email, password });
+            toast.success(response.data.message);
+            setTimeout(() => {
+                navigate("/dashboard");
+            }, 500);
+        } catch (error) {
+            toast.error(error.response.data.message);
+            console.log(error);
+        }
     }
 
     return (
