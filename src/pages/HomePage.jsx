@@ -1,4 +1,9 @@
+import { Link } from "react-router-dom";
+import { recipes } from "../data/recipes";
+
 const HomePage = () => {
+    const token = localStorage.getItem("token");
+
     return (
         <>
             <div className="container mt-10 text-center">
@@ -9,14 +14,22 @@ const HomePage = () => {
                     </h4>
                 </div>
 
-                <div className="max-w-2xl mx-auto mt-10 bg-white shadow-lg p-6 rounded-xl overflow-hidden border border-gray-300">
-                    <ul className="text-center text-lg text-gray-700 space-y-3">
-                        <li className="hover:text-orange-500 transition">👩‍🍳 Share your recipe with your friends</li>
-                        <li className="hover:text-red-500 transition">❤️ Post likes on dishes you love</li>
-                        <li className="hover:text-green-500 transition">💬 View and add comments</li>
-                        <li className="hover:text-indigo-500 transition">🎉 Discover new culinary adventures</li>
-                    </ul>
-                </div>
+                {token && (
+                    <div className="mt-10">
+                        <h2 className="text-3xl font-bold mb-6">Our Recipes</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {Object.keys(recipes).map((recipeId) => {
+                                const recipe = recipes[recipeId];
+                                return (
+                                    <Link to={`/recipe/${recipeId}`} key={recipeId} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                        <h3 className="text-2xl font-bold mb-2">{recipe.title}</h3>
+                                        <p className="text-gray-600">{recipe.description}</p>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>
+                )}
             </div>
         </>
     );
